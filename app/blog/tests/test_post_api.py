@@ -39,7 +39,7 @@ class PublicPostApiTest(TestCase):
         serializer = PostSerializer(posts, many=True)
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
-        self.assertEqual(res.data, serializer.data)
+        self.assertEqual(res.data['results'], serializer.data)
 
     def test_detail_post(self):
         category = Category.objects.create(name='Technology')

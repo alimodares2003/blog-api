@@ -5,6 +5,7 @@ from core.models import Post, Category
 from rest_framework import filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from blog import paginations
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -14,6 +15,7 @@ class PostViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter, filters.OrderingFilter)
     search_fields = ('title', 'content',)
     ordering_fields = '__all__'
+    pagination_class = paginations.PostNumberPagination
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
@@ -25,7 +27,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     ordering_fields = '__all__'
 
     @action(methods=['get'], detail=True, permission_classes=[permissions.AllowAny])
-    def get_posts(self, request, pk=None):
+    def posts(self, request, pk=None):
         category = Category.objects.get(id=pk)
         posts = Post.objects.filter(category_id=category)
         post_serializer = serializers.PostSerializer(posts, many=True)

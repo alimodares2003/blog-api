@@ -10,5 +10,5 @@ app_name = 'blog'
 
 urlpatterns = [
     # path('categories/<int:pk>/post', views.CategoryViewSet.as_view({'get': 'get_posts'})),
-    path('', include(router.urls))
+    path('', include(router.urls)),
 ]
