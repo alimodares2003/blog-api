@@ -1,10 +1,17 @@
 from rest_framework import serializers
-from core.models import Post, Category
+from core.models import Post, Category, Tag
 
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
+        fields = '__all__'
+        read_only_fields = ('id',)
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
         fields = '__all__'
         read_only_fields = ('id',)
 

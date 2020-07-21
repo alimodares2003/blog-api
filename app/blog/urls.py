@@ -5,6 +5,7 @@ from blog import views
 router = DefaultRouter()
 router.register('posts', views.PostViewSet)
 router.register('categories', views.CategoryViewSet)
+router.register('tags', views.TagViewSet)
 
 app_name = 'blog'
 
